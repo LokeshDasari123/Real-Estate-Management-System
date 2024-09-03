@@ -1,0 +1,5 @@
+- Django
+- Pillow
+- psycopg2
+- requests
+- db.sqlite3
