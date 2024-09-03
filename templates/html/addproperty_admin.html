@@ -1,0 +1,99 @@
+{% extends 'html/base.html' %}
+{% block title %}Add Property{% endblock %}
+{% block content %}
+<div class="container-fluid mt-4">
+	<div class="row mx-2">
+		<div class="card col-md-3 shadow-lg m-2 h-100">
+			<div class="card-body">
+				<h4 class="card-title">Property List</h4>
+				<form method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+                    {{z.proptitle}}
+					{{z.proptype}}
+					{{z.propcity}}
+					{{z.propstate}}
+					{{z.propzipcode}}
+					{{z.propsqft}}
+					{{z.propprice}}
+					<p><b><u>Main Photo</u></b></p>
+					{{z.main_photo}}
+					<p><b><u>Photo 1</u></b></p>
+					{{z.photo_1}}
+					<p><b><u>Photo 2</u></b></p>
+					{{z.photo_2}}
+					{{z.propdesc}}
+					<p><b><u>Documents</u></b></p>
+					{{z.propdoc}}
+					<div class="row my-2">
+						<div class="col">
+							<input type="reset" value="Clear" class="btn btn-outline-danger form-control">
+						</div>
+						<div class="col">
+							<input type="submit" value="Save" class="btn btn-outline-success form-control">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="card col-md shadow-lg h-100 mx-2 my-2">
+			<div class="card-body">
+			  <h4>List of properties</h4>
+			  <table class="table">
+				<tr>
+					<th>Sno</th>
+					<th>Type</th>
+					<th>Title</th>
+					<th>City</th>
+					<th>Status</th>
+					<th>Actions</th>
+				</tr>
+				{% for i in h %}
+				<tr>
+					<td>{{forloop.counter}}</td>
+					<td>
+						{% if i.proptype == "1" %}
+							<p class="badge badge-dark">Residential</p>
+						{% elif i.proptype == "2" %}
+							<p class="badge badge-success">Commercial</p>
+						{% elif i.proptype == "3" %}
+							<p class="badge badge-info">Agricultural</p>
+						{% elif i.proptype == "4" %}
+							<p class="badge badge-warning">Industrial</p>
+						{% endif %}
+					</td>
+					<td>{{i.proptitle}}</td>
+					<td>{{i.propcity}}</td>
+					<td>
+						{% if i.propstatus == "g" %}
+							<p class="badge badge-danger">Sold</p>
+						{% elif i.propstatus == "a" %}
+							<p class="badge badge-success">Available</p>
+						{% endif %}
+					</td>
+					<td>
+						{% if i.propstatus == "a" %}
+							<div class="row">
+								<div class="col">
+									<a href="{% url 'uprop' i.id %}" class="btn btn-outline-info form-control">Edit</a>
+								</div>
+								<div class="col">
+									<a href="{% url 'dp' i.id %}" class="btn btn-outline-danger form-control">Delete</a>
+								</div>
+								<div class="col">
+									<a href="{% url 'sp' i.id %}" class="btn btn-outline-secondary form-control">Sell</a>
+								</div>
+							</div>
+						{% else %}
+							<p><b>Sold to : {{i.propsoldto}}</b></p>
+						{% endif %}   
+					</td>
+				</tr>
+				{% endfor %}
+          		</table>
+        	</div>
+      	</div>
+    </div>
+	<br>
+	<br>
+</div>
+{% endblock %}

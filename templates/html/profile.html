@@ -1,0 +1,128 @@
+{% extends 'html/base.html' %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class="container-fluid mt-4">
+	<div class="row mx-2">
+		<div class="card col-md-2 col-sm-3 col-xm-3 shadow-lg m-2 h-100">
+			<img class="card-img-top" src="{{request.user.pfimg.url}}" alt="Profile pic" height="120px" width="70%">
+			<div class="card-body text-center">
+				<h3>{{request.user.username}}</h3>
+			</div>
+		</div>
+		<div class="card col-md col-sm col-xm shadow-lg m-2">
+			<div class="card-body">
+				<div class="row my-2">
+					<div class="col">
+						<h3>Details</h3>
+					</div>
+					<div class="col">
+						<a href="{% url 'upf' %}" class="btn btn-outline-info float-right">Update Profile</a>
+					</div>
+				</div>
+				
+				<table class="table table-responsive">
+					<tr>
+						<td><b>Username : </b></td>
+						<td>{{request.user.username}}</td>
+						<td><b>Unique Id : </b></td>
+						<td>{{request.user.eid}}</td>
+					</tr>
+					<tr>
+						<td><b>First Name : </b></td>
+						<td>{{request.user.first_name}}</td>
+						<td><b>Last Name : </b></td>
+						<td>{{request.user.last_name}}</td>
+					</tr>
+					<tr>
+						<td><b>Emailid : </b></td>
+						<td>{{request.user.email}}</td>
+						<td><b>Mobile Number : </b></td>
+						<td>{{request.user.mble}}</td>
+					</tr>
+                    <tr>
+                        <td><b>Gender : </b></td>
+                        <td>
+                            {% if request.user.gdr == "1" %}
+                                <p class="badge badge-info">Male</p>
+                            {% elif request.user.gdr == "2" %}
+                            <p class="badge badge-secondary">Female</p>
+							{% endif %}
+                        </td> 
+                    </tr>
+					<tr>
+						<td><b>Role Type : </b></td>
+						<td>
+							{% if request.user.role_type == "1" %}
+								<p class="badge badge-secondary">Buyer</p>
+							{% elif request.user.role_type == "2" %}
+								<p class="badge badge-success">Seller</p>
+							{% elif request.user.role_type == "0" and not request.user.is_superuser %}
+								<p class="badge badge-primary">Guest</p>
+							{% elif request.user.is_superuser %}
+								<p class="badge badge-dark">Admin</p>
+							{% else %}
+							{% endif %}
+						</td>
+					</tr>
+					{% if request.user.role_type == "2" and request.user.seprofile.sstatus == 1 %}
+						<tr>
+							<td><b>Language : </b></td>
+							<td>{{request.user.seprofile.sellang}}</td>
+							<td><b>Age : </b></td>
+							<td>{{request.user.seprofile.selage}}</td>
+						</tr>
+						<tr>
+							<td><b>Location : </b></td>
+							<td>{{request.user.seprofile.seloc}}</td>
+							<td><b>Preference : </b></td>
+							<td>{{request.user.seprofile.selltypes}}</td>
+						</tr>
+						<tr>
+							<td><b>Address : </b></td>
+							<td>{{request.user.seprofile.sellinfo}}</td>
+						</tr>
+						<tr>
+							<td><b>Experience : </b></td>
+							<td>{{request.user.seprofile.sellexpr}}</td>
+							<td><b>Cretificate : </b></td>
+							<td>
+								{% if request.user.seprofile.sellcerti %}
+									<p class="badge badge-success">Uploaded</p>
+									<a href="{{request.user.seprofile.sellcerti.url}}" target="_blank" >Click to see</a>
+								{% else %}
+									<p class="badge badge-danger">Not Uploaded</p>
+								{% endif %}
+							</td>
+						</tr>
+                    {% elif request.user.role_type == "1" and request.user.byprofile.bstatus == 1 %}
+						<tr>
+							<td><b>Language : </b></td>
+							<td>{{request.user.byprofile.buylang}}</td>
+							<td><b>Age : </b></td>
+							<td>{{request.user.byprofile.buyage}}</td>
+						</tr>
+						<td><b>Location : </b></td>
+						<td>{{request.user.byprofile.buyloc}}</td>
+						<td><b>Preference : </b></td>
+						<td>
+							{% if request.user.byprofile.buytypes == "1" %}
+								<p>Resedential</p>
+							{% elif request.user.byprofile.buytypes == "2" %}
+								<p>Commercial</p>
+							{% elif request.user.byprofile.buytypes == "3" %}
+								<p>Agriculturial</p>
+							{% elif request.user.byprofile.buytypes == "4" %}
+								<p>Industrial</p>
+							{% endif %}
+						</td>
+						<tr>
+							<td><b>Address : </b></td>
+							<td>{{request.user.byprofile.buyinfo}}</td>
+						</tr>
+					{% endif %}
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

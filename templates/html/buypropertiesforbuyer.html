@@ -1,0 +1,29 @@
+{% extends 'html/base.html' %}
+{% block title %}Properties{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <h3 style="display:flex ;
+    justify-content: center;
+    font-size: 2rem;"
+    class="my-3">My Properties</h3>
+    <div class="row">
+        {% for property in z1 %}
+            <div class="col-md-3 mt-4 mx-auto">
+                <div class="card shadow-lg" style="border-radius: 5%;">
+                    <img class="card-img-top" src="{{ property.main_photo.url }}" alt="Property Image" style="width:100%;
+                    height: 35vh; border-radius: 5%;">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ property.proptitle }}</h4>
+                        <p class="card-text">{{ property.propdesc }}</p>
+                        <div class="row">
+                            <div class="col">
+                                <a href="{% url 'apropdet' property.id %}" class="btn btn-outline-primary">Details</a> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

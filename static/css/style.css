@@ -1,0 +1,208 @@
+.desig{
+    background-color: #131921;
+    
+}
+.navv_it{
+    color: #fff;
+}
+.back2{
+    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('/static/images/homepage/home\(bg1\).png');
+    height: 600px;
+    margin: auto;
+    background-repeat: no-repeat;
+    width: 90%;
+    margin-top: 20px;
+    background-size: cover;
+    border-radius: 20px;
+    background-color: #D9D9D9;
+}
+.back2 h1{
+    color: #FFF;
+    position: relative;
+    top: 200px;
+    left: 50px;
+}
+.back2 a{
+    position: relative;
+    left: 50px;
+    top: 230px;
+}
+.serv1{
+    margin: auto;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65px;
+    width: 282px;
+    border-radius: 15px;
+    background: rgba(77, 211, 245, 0.20);
+}
+.services{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+}
+.content{
+    width: 600px;
+    padding-left: 50px;
+}
+.content h1{
+    padding-bottom: 20px;
+}
+img{
+    width: 70%;   
+    float: right;
+}
+.services1{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+}
+.content1{
+    width: 600px;
+    padding-left: 50px;
+}
+.content1 h1{
+    padding-bottom: 20px;
+}
+.sliders{
+    height: 336px;
+    width: 27%;
+    background-image: url('/static/images/homepage/land1.jpg');
+    background-size: cover;
+    border-radius: 10%;
+    animation-play-state: paused;
+}
+.list{
+	color: #71677C;
+	background: white;
+	font-size: 25px;
+    font-weight: 100;
+}
+.list li{
+	list-style: none;
+}
+.list li::before{
+    content: "\00BB";
+    color: #37123C;
+    font-size: 40px;
+}
+.cont h1{
+    margin-left: 40px;
+}
+.prop1{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+}
+.c1{
+    border-style: none;
+    border-radius: 5%;
+}
+.fend{
+    margin-left: 70%;
+}
+.cards1{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.lomar{
+    margin-top: 10%;
+}
+.lo1{
+    margin-top: 5%;
+}
+.test1{
+    background: rgba(19, 25, 33,0.10);
+}
+.lomar1{
+    margin-top: 3%;
+}
+#cntdet{
+    display: flex;
+    justify-content: center;
+}
+.cnt1 {
+    height: 390px;
+    width: 100%;
+    background-image: url("/static/images/contactpage/left.jpeg");
+    filter: blur(0.2px);
+    /* opacity: 0.5; */
+    background-size: cover;
+    border-radius: 10%;
+    overflow: hidden;
+  }
+  .bg {
+    background-color: rgb(62, 41, 41);
+    z-index: 2;
+  }
+  .cntinf1 {
+    width: 250px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 25px;
+    color: rgb(247, 248, 255);
+    font-size: large;
+    font-weight: 600;
+  }
+  .cntinf2 {
+    position: absolute;
+    top: 0;
+    /* right: 0; */
+    padding: 25px;
+    color: rgb(138, 40, 40);
+    font-size: large;
+    font-weight: 600;
+  }
+  .reg1{
+    height: 65vh;
+    background-image: url("/static/images/registerpage/register.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .carimg{
+    margin-top: 4%;
+    border-radius: 7%;
+  }
+  .regpad{
+    margin-bottom: 7%;
+  } 
+  .serv2 {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65px;
+    width: 100%;
+    border-radius: 25px;
+    /* background: rgba(77, 211, 245, 0.2); */
+    font-size: 60px;
+    /* color: #142c6e; */
+  }
+  
+  .abt {
+    background: #5b9a8b;
+    background: rgba(77, 211, 245, 0.2);
+  }
+  .my_self {
+    color: rgb(6, 20, 34);
+    font-size: 24px;
+  }
+  .img1 {
+    float: right;
+    /* padding-right: 25px; */
+    width: 600px;
+    height: 50vh;
+  }
+  

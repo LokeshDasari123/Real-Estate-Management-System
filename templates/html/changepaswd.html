@@ -1,0 +1,25 @@
+{% extends 'html/base.html' %}
+{% block title %}Change Password{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card col-md-5 mx-auto shadow-lg">
+        <div class="card-body">
+            <h4>Change password</h4>
+            <form method="POST">
+                {% csrf_token %}
+                {% for i in h %}
+                    {{i}}
+                {% endfor %}
+                <div class="row">
+                    <div class="col">
+                        <input type="reset" value="Clear" class="btn btn-outline-danger form-control mt-2">
+                    </div>
+                    <div class="col">
+                        <input type="submit" value="Change Password" class="btn btn-outline-success form-control mt-2">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

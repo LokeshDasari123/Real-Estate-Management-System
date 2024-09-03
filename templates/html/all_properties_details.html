@@ -1,0 +1,89 @@
+{% extends 'html/base.html' %}
+{% block title %}Property details{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div style="display: flex;flex-direction: row; justify-content: space-evenly;">
+        <img src="{{ z2.main_photo.url }}" class="my-4 shadow-lg" alt="Property Image" style="width:45%;
+        border-radius: 20px; height: 45vh;">
+        <img src="{{ z2.photo_1.url }}" class="my-4 shadow-lg" alt="Property Image" style="width:45%;
+        border-radius: 20px; height: 45vh;">
+    </div>
+    <div style="display: flex;flex-direction: row; justify-content: space-evenly;">
+        <img src="{{ z2.photo_2.url }}" class="my-4 shadow-lg" alt="Property Image" style="width:45%;
+        border-radius: 20px; height: 45vh;">
+        <img src="{{ z2.photo_2.url }}" class="my-4 shadow-lg" alt="Property Image" style="width:45%;
+        border-radius: 20px; height: 45vh;">
+    </div>    
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card mx-auto shadow-lg">
+                <div class="card-body mx-auto">
+                    <h4 style="display: flex; justify-content: center;"><u>Property Details</u></h4>
+                    <p><b>Title : </b>{{z2.proptitle}}</p>
+                    {% if z2.proptype == "1" %}
+                        <p><b>Type : </b>Residential</p>
+					{% elif i.proptype == "2" %}
+                        <p><b>Type : </b>Commercial</p>
+					{% elif i.proptype == "3" %}
+                        <p><b>Type : </b>Agricultural</p>
+					{% elif i.proptype == "4" %}
+                        <p><b>Type : </b>Industrial</p>
+					{% endif %}
+                    <p><b>City : </b>{{z2.propcity}}</p>
+                    <p><b>State : </b>{{z2.propstate}}</p>
+                    <p><b>Zip Code : </b>{{z2.propzipcode}}</p>
+                    <p><b>Square Feet : </b>{{z2.propsqft}}</p>
+                    <p><b>Price : </b>{{z2.propprice}}</p>
+                    <p><b>Description</b></p>
+                    <p>{{z2.propdesc}}</p>
+                    <p><b>Documnent Link : </b><a href="{{z2.propdoc.url}}" target="_blank">Link</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card mx-auto shadow-lg">
+                <div class="card-body">
+                    <h4 style="display: flex; justify-content: center;"><u>Seller Details</u></h4>
+                    <p><b>ID : </b>{{z4.eid}}</p>
+                    <p><b>First Name : </b>{{z4.first_name}}</p>
+                    <p><b>Last Name : </b>{{z4.last_name}}</p> 
+                    {% if z4.gdr == "1" %}
+                        <p><b>Gender : </b>Male</p>
+                    {% elif z4.gdr == "2" %}
+                        <p><b>Gender : </b>Female</p>
+                    {% endif %}
+                    <p><b>Mobile No : </b>{{z4.mble}}</p>
+                    <p><b>Email : </b>{{z4.email}}</p>
+                    {% if not z4.is_superuser %}
+                        <p><b>Language : </b>{{z3.sellang}}</p>
+                        <p><b>Age : </b>{{z3.selage}}</p>
+                        <p><b>Location : </b>{{z3.seloc}}</p>
+                        <p><b>Additional Info : </b>{{z3.sellinfo}}</p>
+                        <p><b>Experience : </b>{{z3.sellexpr}}</p>
+                    {% endif %}
+                    <div class="row">
+                        <div class="col">
+                            {% if request.user.is_superuser %}
+                                <a href="{% url 'allprops' %}" class="btn btn-outline-info form-control">Back</a>
+                            {% elif  request.user.role_type == "2" %}
+                                <a href="{% url 'mp' %}" class="btn btn-outline-info form-control">Back</a>
+                            {% elif request.user.role_type == "1" %}
+                                <a href="{% url 'mpb' %}" class="btn btn-outline-info form-control">Back</a>
+                            {% endif %}
+                        </div>
+                        <div class="col">
+                            {% if request.user.role_type == "2" and not z2.propsoldto %}
+                                <a href="{% url 'uprop' z2.id %}" class="btn btn-outline-success form-control">Edit</a>
+                            {% elif request.user.is_superuser and not z2.propsoldto %}
+                                <a href="{% url 'uprop' z2.id %}" class="btn btn-outline-success form-control">Edit</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+</div>
+{% endblock %}

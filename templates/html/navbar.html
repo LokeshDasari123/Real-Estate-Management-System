@@ -1,0 +1,105 @@
+{% load static %}
+<nav class="navbar navbar-expand-md desig">
+  <!-- Brand -->
+  <a class="navbar-brand" href="{% url 'hm' %}">
+  <img src="{% static 'images/icons/logo.jpg' %}" alt="logo.png" class="rounded-circle" width="35px" height="35px"></a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      {% if not user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link navv_it {% if request.path == '/' %}active{% endif %}" href="{% url 'hm' %}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link navv_it {% if request.path == '/abt/' %}active{% endif %}" href="{% url 'ab' %}">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link navv_it {% if request.path == '/cnt/' %}active{% endif %}" href="{% url 'ct' %}">Contact</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link navv_it {% if request.path == '/' %}active{% endif %}" href="{% url 'hm' %}">Home</a>
+      </li>
+      {% if request.user.is_superuser %}
+      <li class="nav-item">
+        <a class="nav-link navv_it {% if request.path == '/cnt/' %}active{% endif %}" href="{% url 'ct' %}">Contact</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link navv_it {% if request.path == '/mailtoadmin/' %}active{% endif %}" href="{% url 'msta' request.user.id %}">Contact</a>
+      </li>
+      {% endif %}
+      {% if request.user.role_type == "1" and not request.user.is_superuser and request.user.byprofile.bstatus == 1 %}
+      <li class="nav-item">
+        <a class="nav-link navv_it {% if request.path == '/buyprop/' %}active{% endif %} " href="{% url 'bp' %}">Buy</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link navv_it {% if request.path == '/mypropforb/' %}active{% endif %}" href="{% url 'mpb' %}"> My Properties</a>
+      </li>
+      {% elif request.user.role_type == "2" and not request.user.is_superuser and request.user.seprofile.sstatus == 1 %}
+      <li class="nav-item">
+        <a class="nav-link navv_it {% if request.path == '/buyprop/' %}active{% endif %}" href="{% url 'bp' %}">Buy</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link navv_it {% if request.path == '/propadd/' %}active{% endif %}" href="{% url 'aprop' %}">Property List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link navv_it {% if request.path == '/myprop/' %}active{% endif %}" href="{% url 'mp' %}"> My Properties</a>
+      </li>
+      {% else %}
+      {% endif %}
+      {% if request.user.is_superuser %}
+          <li class="nav-item">
+            <a class="nav-link navv_it {% if request.path == '/usrlst/' %}active{% endif %}" href="{% url 'usrl' %}">User List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link navv_it {% if request.path == '/proplista/' %}active{% endif %}" href="{% url 'lprop' %}">Property List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link navv_it {% if request.path == '/allprop_a/' %}active{% endif %}" href="{% url 'allprops' %}">Properties</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link navv_it {% if request.path == '/approval/' %}active{% endif %}" href="{% url 'appr' %}">Approval</a>
+          </li>
+          {% endif %}
+        {% endif %}
+    </ul>
+    <ul class="navbar-nav ml-auto" style="margin-right:100px">
+      {% if not user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link navv_it {% if request.path == '/lgn/' %}active{% endif %}" href="{% url 'lg' %}">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link navv_it {% if request.path == '/reg/' %}active{% endif %}" href="{% url 'rg' %}">Sign Up</a>
+      </li>
+      {% else %}
+      <div class="dropdown">
+        <a class="nav-link navv_it dropdown-toggle" data-toggle="dropdown">
+          Welcome {% if user.is_superuser %}
+                    Admin
+                  {% else %}
+                    {% if request.user.role_type == '0' %}
+                      Guest
+                    {% elif request.user.role_type == '1' %}
+                      Buyer
+                    {% else %}
+                      Seller
+                    {% endif %}
+                  {% endif %} 
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item {% if request.path == '/pfle/' %}active{% endif %}" href="{% url 'pf' %}">Profile</a>
+          <a class="dropdown-item {% if request.path == '/chge/' %}active{% endif %}" href="{% url 'cge' %}">Change Password</a>
+          <a class="dropdown-item {% if request.path == '/lgot/' %}active{% endif %}" href="{% url 'lgt' %}">Logout</a>
+        </div>
+      </div>
+      {% endif %}
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,50 @@
+{% extends 'html/base.html' %}
+{% block title %}Details{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <div class="card mx-auto shadow-lg">
+                <div class="card-body">
+                    <h4>Details Page</h4>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <p><b>ID : </b>{{z4.eid}}</p>
+                            <p><b>First Name : </b>{{z4.first_name}}</p>
+                            <p><b>Last Name : </b>{{z4.last_name}}</p>
+                            {% if z4.gdr == "1" %}
+                                <p><b>Gender : </b>Male</p>
+                            {% elif z4.gdr == "2" %}
+                                <p><b>Gender : </b>Female</p>
+                            {% endif %}
+                            <p><b>Mobile No : </b>{{z4.mble}}</p>
+                            <p><b>Email : </b>{{z4.email}}</p>
+                        <div class="row">
+                            <div class="col">
+                                <a href="{% url 'appr' %}" class="btn btn-outline-info form-control mt-2">Back</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card mx-auto shadow-lg">
+                <div class="card-body">
+                    <h4>Additional Details</h4>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <p><b>Language : </b>{{z5.sellang}}</p>
+                        <p><b>Age : </b>{{z5.selage}}</p>
+                        <p><b>Location : </b>{{z5.seloc}}</p>
+                        <p><b>Additional Info : </b>{{z5.sellinfo}}</p>
+                        <p><b>Experience : </b>{{z5.sellexpr}}</p>
+                        <p><b>Document : </b></p>
+                        <a href="{{z5.sellcerti.url}}" target="_blank">{{z5.sellcerti.name}}</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

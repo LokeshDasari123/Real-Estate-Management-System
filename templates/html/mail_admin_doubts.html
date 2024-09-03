@@ -1,0 +1,52 @@
+{% extends 'html/base.html' %}
+{% block title %}
+  Contact
+{% endblock %}
+{% block content %}
+  <div class="container test1 lomar1 pb-5">
+    <div class="row">
+      <div class="col-md-5 mx-auto shadow-lg lo1">
+        <div class="cnt1">
+          <div class="bg">
+            <h4 class="cntinf1"><i class="fas fa-map-marker-alt" style="color: brown;"></i> 9 123 Anywhere St., Any City, ST 12345</h4>
+            <h3 class="cntinf2">
+              <i class="fas fa-envelope" style="color: snow;"></i> teja1stsem@gmail.com
+
+              <br />
+              <i class="fas fa-phone" style="color: snow;"></i> Ph.No: 7911923020
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div class="card col-5 mx-auto shadow-lg lo1">
+        {% if messages %}
+          {% for i in messages %}
+            {% if i.tags == 'error' %}  
+              <div class="alert alert-danger alert-dismissible my-2">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{ i }} 
+              </div>
+            {% else %}
+              <div class="alert alert-{{ i.tags }} alert-dismissible my-2">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{ i }}
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        <div class="card-body">
+          <h4 id="cntdet">Get in Touch</h4>
+          <form method="POST">
+            {% csrf_token %}
+            {% for i in g %}
+				{{i}}
+			{% endfor %}
+            <input type="text" name="sb" placeholder="Subject" class="form-control my-2" />
+            <textarea class="form-control my-2" rows="4" placeholder="Enter Message" name="msg"></textarea>
+            <input type="submit" value="Send" class="btn btn-block btn-outline-info" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

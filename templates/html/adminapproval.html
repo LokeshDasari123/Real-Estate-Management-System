@@ -1,0 +1,50 @@
+{% extends 'html/base.html' %}
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Approve Seller</h1>
+    <div class="card col-md shadow-lg mx-2  h-100 my-2">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <table class="table">
+                    <tr>
+                        <th>Sno</th>
+						<th>Username</th>
+						<th>Unique Id</th>
+						<th>Role Type</th>
+						<th>Actions</th>
+                    </tr>
+                    {% for j in z2 %}
+                    <tr>
+						<td>{{forloop.counter}}</td>
+						<td>{{j.username}}</td>
+						<td>{{j.eid}}</td>
+						<td>
+							{% if j.role_type == '0' %}
+                                <p class="badge badge-warning">Pending</p>
+							{% elif j.role_type == '2' %}
+								<p class="badge badge-success">Approved</p>
+							{% elif j.role_type == '3' %}
+								<p class="badge badge-danger">Denied</p>
+							{% else %}
+							{% endif %}
+						</td>
+						<td>
+							<div class="row">
+								<div class="col">
+									<a href="{% url 'appd' j.id %}" class="btn btn-outline-info form-control">Details</a>
+								</div>
+								<div class="col">
+									<a href="{% url 'appupdsell' j.id %}" class="btn btn-outline-success form-control">Edit</a>
+								</div>
+							</div>
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
